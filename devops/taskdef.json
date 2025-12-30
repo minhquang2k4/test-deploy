@@ -1,0 +1,34 @@
+{
+  "family": "test-deploy-task",
+  "networkMode": "awsvpc",
+  "containerDefinitions": [
+    {
+      "name": "test-deploy-container",
+      "image": "072705592885.dkr.ecr.ap-southeast-1.amazonaws.com/test-deploy:latest",
+      "portMappings": [
+        {
+          "containerPort": 3000,
+          "hostPort": 3000,
+          "protocol": "tcp"
+        }
+      ],
+      "essential": true,
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "secretOptions": null,
+        "options": {
+          "awslogs-group": "/ecs/test-deploy-task",
+          "awslogs-region": "ap-southeast-1",
+          "awslogs-stream-prefix": "ecs",
+          "awslogs-create-group": "true"
+        }
+      }
+    }
+  ],
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
+  "memory": "1024",
+  "cpu": "512",
+  "executionRoleArn": "arn:aws:iam::072705592885:role/ecsTaskExecutionRole"
+}
