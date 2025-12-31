@@ -3,7 +3,9 @@ import express from 'express';
 const app = express();
 
 app.get('/', (req, res) => {
-  res.send('Hello World, Minh Quang build lên AWS');
+  return res.status(200).json({
+    message: 'Hello World, Minh Quang build ci/cd pipeline'
+  });
 });
 
 app.listen(3000, () => {
